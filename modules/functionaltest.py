@@ -27,7 +27,7 @@ class FunctionalTest(unittest.TestCase):
         self.browser.close()
         self.web2py.kill()
 
-    def get_response_code(self, url):
+    def getResponseCode(self, url):
         """Returns the response code of the given url
 
         url     the url to check for
@@ -41,7 +41,7 @@ def start_web2py_server():
     #noreload ensures single process
     print os.path.curdir
     return subprocess.Popen(
-        ['python', '../../web2py.py',
+        ['python', 'web2py.py',
          'runserver', '-a "testing"', '-p 8000']
     )
 

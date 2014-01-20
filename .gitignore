@@ -34,3 +34,8 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+
+# web2py : databases / errors / sessions
+databases/
+errors/
+sessions/

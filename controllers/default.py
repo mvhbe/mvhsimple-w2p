@@ -1,4 +1,6 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 # this file is released under public domain and you can use without limitations
 
 #########################################################################
@@ -38,6 +40,7 @@ def user():
     to decorate functions that need access control
     """
     return dict(form=auth())
+
 
 @cache.action()
 def download():

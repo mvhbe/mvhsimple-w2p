@@ -5,13 +5,12 @@ try:
     import unittest2 as unittest  # for Python <= 2.6
 except:
     import unittest
-import sys
 import urllib2
 from selenium import webdriver
 import subprocess
 import os.path
 
-ROOT = 'http://localhost:8000'
+ROOT = 'http://localhost:8666'
 
 
 class FunctionalTest(unittest.TestCase):
@@ -42,25 +41,5 @@ def start_web2py_server():
     print os.path.curdir
     return subprocess.Popen(
         ['python', 'web2py.py',
-         'runserver', '-a "testing"', '-p 8000']
+         'runserver', '-a "testing"', '-p 8666']
     )
-
-
-# def run_functional_tests(pattern=None):
-#     print 'running tests'
-#     if pattern is None:
-#         tests = unittest.defaultTestLoader.discover('fts')
-#     else:
-#         pattern_with_globs = '*%s*' % (pattern,)
-#         tests = unittest.defaultTestLoader.discover('fts',
-#                                                     pattern=pattern_with_globs)
-
-#     runner = unittest.TextTestRunner()
-#     runner.run(tests)
-
-
-# if __name__ == '__main__':
-#     if len(sys.argv) == 1:
-#         run_functional_tests()
-#     else:
-#         run_functional_tests(pattern=sys.argv[1])

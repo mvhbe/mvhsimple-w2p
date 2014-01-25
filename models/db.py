@@ -1,5 +1,14 @@
 # -*- coding: utf-8 -*-
 
+# IDE stuff for web2py
+if 0:
+    import db
+    from gluon.dal import DAL
+    from gluon.globals import *
+    session = Session()
+    request = Request()
+    response = Response()
+
 #########################################################################
 ## This scaffolding model makes your app work on Google App Engine too
 ## File is released under public domain and you can use without limitations

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from functionaltest import FunctionalTest, ROOT
+from modules.functionaltest import FunctionalTest, ROOT
 
 MVHURL = ROOT + "/mvh/"
 

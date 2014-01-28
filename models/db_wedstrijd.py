@@ -14,7 +14,8 @@ db.define_table('wedstrijd',
                 Field('datum', 'date', unique=True, notnull=True, required=True),
                 Field('omschrijving', 'string', length=100, notnull=True,
                       required=True),
-                Field('aanvang', 'datetime'),
+                Field('aanvang', 'string', length=5, notnull=True,
+                      required=True, default="13:30"),
                 Field('opmerkingen', 'text'),
                 auth.signature
 )

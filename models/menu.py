@@ -27,7 +27,12 @@ response.google_analytics_id = None
 #########################################################################
 
 response.menu = [
-    (T('Home'), False, URL('default', 'index'), [])
+    (T('Home'), False, URL('default', 'index'), []),
+    (T('Kalender'), False, URL('default', 'kalender'), []),
+    #(T('Uitslagen'), False, URL('default', 'uitslagen'), []),
 ]
+
+if auth.user:
+    response.menu.append((T('Kalenders'), False, URL('kalender', 'overzicht'), []))
 
 if "auth" in locals(): auth.wikimenu()

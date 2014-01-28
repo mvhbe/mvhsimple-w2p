@@ -1,0 +1,36 @@
+{{extend 'layout.html'}}
+
+<h2>Wedstrijdkalender {{=huidig_jaar}}</h2>
+
+<br>
+{{if wedstrijden:}}
+    {{oude_maand = ""}}
+    {{afsluiten_maand= False}}
+    {{for wedstrijd in wedstrijden:}}
+        {{maand = wedstrijd.datum.strftime("%B")}}
+        {{if oude_maand <> maand:}}
+            {{if afsluiten_maand:}}
+                    </tbody>
+                </table>
+                {{afsluiten_maand = False}}
+            {{pass}}
+            <h4>{{=T(maand)}}</h4>
+            <table>
+                <tbody>
+        {{pass}}
+                <tr>
+                    <td>{{=wedstrijd.datum}}</td>
+                    <td>{{=wedstrijd.omschrijving}}</td>
+                    <td>{{=wedstrijd.aanvang}}</td>
+                    <td>{{=wedstrijd.opmerkingen}}</td>
+                </tr>
+        {{if oude_maand <> maand:}}
+            {{afsluiten_maand = True}}
+        {{pass}}
+        {{oude_maand = maand}}
+    {{pass}}
+            </tbody>
+        </table>
+{{else:}}
+    Geen kalender beschikbaar voor {{=huidig_jaar}}
+{{pass}}

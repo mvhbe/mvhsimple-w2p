@@ -1,0 +1,10 @@
+{{extend 'layout.html'}}
+
+<h2>Detail wedstrijd</h2>
+<h6>Wedstrijdkalender {{=kalender.jaar}}</h6>
+
+<br>
+{{=A("Terug", _href=URL("kalender", "wedstrijden", args=kalender.id), _class="btn")}}
+
+<br><br>
+{{=form}}

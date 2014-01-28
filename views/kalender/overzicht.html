@@ -2,4 +2,18 @@
 
 <h2>Overzicht kalenders</h2>
 
-Geen kalenders.
+<br>
+{{=A("nieuwe kalender", _href=URL("kalender", "nieuw"), _class="btn")}}
+
+<br><br>
+{{if kalenders:}}
+    <table>
+        {{for kalender in kalenders:}}
+        <tr>
+            <td>{{=jaar_link(kalender.jaar, kalender)}}</td>
+        </tr>
+        {{pass}}
+    </table>
+{{else:}}
+    Geen kalenders beschikbaar.
+{{pass}}

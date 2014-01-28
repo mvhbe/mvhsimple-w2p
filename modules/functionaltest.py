@@ -41,5 +41,5 @@ def start_web2py_server():
     print os.path.curdir
     return subprocess.Popen(
         ['python', 'web2py.py',
-         'runserver', '-a "testing"', '-p 8666']
+         'runserver', '-a "testing"', '-p 8666', 'testdb']
     )

@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 # -*- coding: utf-8 -*-
 
 # IDE stuff for web2py
@@ -8,6 +11,10 @@ if 0:
     session = Session()
     request = Request()
     response = Response()
+
+import sys
+
+TESTING = ("testdb" in sys.argv)
 
 #########################################################################
 ## This scaffolding model makes your app work on Google App Engine too
@@ -20,7 +27,11 @@ if 0:
 
 if not request.env.web2py_runtime_gae:
     ## if NOT running on Google App Engine use SQLite or other DB
-    db = DAL('sqlite://storage.sqlite',pool_size=1,check_reserved=['all'])
+    if TESTING:
+        db = DAL('sqlite://memory', pool_size=1, check_reserved=['all'])
+    else:
+        db = DAL('sqlite://storage.sqlite', pool_size=1,
+                 check_reserved=['all'])
 else:
     ## connect to Google BigTable (optional 'google:datastore://namespace')
     db = DAL('google:datastore')

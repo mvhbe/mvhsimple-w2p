@@ -15,6 +15,8 @@ if 0:
     response = Response()
     cache = Cache()
 
+import mvhutils
+
 # this file is released under public domain and you can use without limitations
 
 #########################################################################
@@ -27,8 +29,28 @@ if 0:
 
 
 def index():
+    T.force("nl")
     response.flash = T("Welcome to web2py!")
     return dict(message=T('Hello World'))
+
+
+def kalender():
+    T.force("nl")
+    jaar = str(mvhutils.huidigJaar())
+    kalender = db.kalender(db.kalender.jaar==jaar)
+    query = (db.wedstrijd.kalender==kalender)
+    wedstrijden = db(query).select(db.wedstrijd.datum,
+                                   db.wedstrijd.omschrijving,
+                                   db.wedstrijd.aanvang,
+                                   db.wedstrijd.opmerkingen,
+                                   orderby=db.wedstrijd.datum)
+    print "wedstrijden = ", wedstrijden
+    return dict(wedstrijden=wedstrijden, huidig_jaar=jaar)
+
+
+def uitslagen():
+    T.force("nl")
+    return dict(message=TODO)
 
 
 def user():

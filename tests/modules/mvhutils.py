@@ -30,3 +30,30 @@ class MvhutilsModule(unittest.TestCase):
         begin_maand, einde_maand = mvhutils.beginEindeHuidigeMaand()
         self.assertEqual(BEGIN_MAAND, begin_maand)
         self.assertEqual(EINDE_MAAND, einde_maand)
+
+    def testIsUur(self):
+        """Uur validatie werkt correct"""
+        defaultError = "Uur (UU:MM) foutief !"
+        customError = "Error !"
+
+        geldigUur = IS_UUR()
+        defaultError = "Uur (UU:MM) foutief !"
+        uur, error = geldigUur("00:00")
+        self.assertEqual(error, None)
+        uur, error = geldigUur("23:59")
+        self.assertEqual(error, None)
+        uur, error = geldigUur("00u00")
+        self.assertEqual(error, defaultError)
+        uur, error = geldigUur("24:00")
+        self.assertEqual(error, defaultError)
+
+        geldigUur = IS_UUR(customError)
+        uur, error = geldigUur("00:00")
+        self.assertEqual(error, None)
+        uur, error = geldigUur("23:59")
+        self.assertEqual(error, None)
+        uur, error = geldigUur("00u00")
+        self.assertEqual(error, customError)
+        uur, error = geldigUur("24:00")
+        self.assertEqual(error, customError)
+

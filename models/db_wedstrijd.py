@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from customvalidators import IS_UUR
 
 def wedstrijd_string(datum):
     return datum
@@ -21,12 +22,18 @@ db.define_table('wedstrijd',
 )
 
 db.wedstrijd.kalender.requires = IS_IN_DB(db, db.kalender.id, "%(jaar)s")
-db.wedstrijd.omschrijving.requires = IS_NOT_EMPTY(error_message="Omschrijving niet ingevuld !")
-db.wedstrijd.datum.requires = [IS_DATE(format='%d/%m/%Y',
-                                       error_message="Datum (DD/MM/JJJJ) niet ingevuld !"),
-                               IS_NOT_IN_DB(db, db.wedstrijd.datum,
-                                            error_message="Datum bestaat reeds !")
+db.wedstrijd.omschrijving.requires = [
+    IS_NOT_EMPTY(error_message="Omschrijving niet ingevuld !")
 ]
-# db.wedstrijd.aanvang.requires = [IS_DATETIME(format='%H:%M',
-#                                        error_message="Aanvang (DD/MM/JJJJ HH:MM) niet ingevuld !")
-# ]
+db.wedstrijd.datum.requires = [
+    IS_DATE(format='%d/%m/%Y',
+            error_message="Datum (DD/MM/JJJJ) niet ingevuld !"),
+    IS_NOT_IN_DB(db, db.wedstrijd.datum,
+                 error_message="Datum bestaat reeds !")
+]
+uurGeldig = IS_UUR()
+db.wedstrijd.aanvang.requires = [
+    IS_NOT_EMPTY(error_message="Uur (UU:MM) niet ingevuld !"),
+    uurGeldig(db.wedstrijd.aanvang)
+    # IS_TIME(error_message="Uur (UU:MM) foutief !")
+]

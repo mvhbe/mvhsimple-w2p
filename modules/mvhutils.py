@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# -*- coding: utf-8 -*-
-
 import calendar
 import datetime
 
@@ -22,3 +20,6 @@ def beginEindeHuidigeMaand():
     begin_maand = datetime.date(vandaag.year, vandaag.month, eerste_dag)
     einde_maand = datetime.date(vandaag.year, vandaag.month, laatste_dag)
     return begin_maand, einde_maand
+
+
+

@@ -27,6 +27,6 @@ db.wedstrijd.datum.requires = [IS_DATE(format='%d/%m/%Y',
                                IS_NOT_IN_DB(db, db.wedstrijd.datum,
                                             error_message="Datum bestaat reeds !")
 ]
-db.wedstrijd.aanvang.requires = [IS_DATETIME(format='%H:%M',
-                                       error_message="Aanvang (DD/MM/JJJJ HH:MM) niet ingevuld !")
-]
+# db.wedstrijd.aanvang.requires = [IS_DATETIME(format='%H:%M',
+#                                        error_message="Aanvang (DD/MM/JJJJ HH:MM) niet ingevuld !")
+# ]

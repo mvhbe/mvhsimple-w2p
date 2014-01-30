@@ -12,7 +12,8 @@ def wedstrijd_link(datum, row):
 
 db.define_table('wedstrijd',
                 Field("kalender", "reference kalender"),
-                Field('datum', 'date', unique=True, notnull=True, required=True),
+                Field('datum', 'date', unique=True, notnull=True,
+                      required=True),
                 Field('omschrijving', 'string', length=100, notnull=True,
                       required=True),
                 Field('aanvang', 'string', length=5, notnull=True,
@@ -31,9 +32,7 @@ db.wedstrijd.datum.requires = [
     IS_NOT_IN_DB(db, db.wedstrijd.datum,
                  error_message="Datum bestaat reeds !")
 ]
-uurGeldig = IS_UUR()
 db.wedstrijd.aanvang.requires = [
     IS_NOT_EMPTY(error_message="Uur (UU:MM) niet ingevuld !"),
-    uurGeldig(db.wedstrijd.aanvang)
-    # IS_TIME(error_message="Uur (UU:MM) foutief !")
+    IS_UUR()
 ]

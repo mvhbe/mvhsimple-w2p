@@ -21,7 +21,6 @@ def nieuw():
     T.force("nl")
     kalender_id = request.args(0)
     kalender = db.kalender(kalender_id)
-    print "kalender = ", kalender
     db.wedstrijd.kalender.readable = False
     db.wedstrijd.kalender.writable = False
     db.wedstrijd.kalender.default = kalender.id

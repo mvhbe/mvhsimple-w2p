@@ -19,7 +19,7 @@
                 <tbody>
         {{pass}}
                 <tr>
-                    <td>{{=wedstrijd.datum}}</td>
+                    <td>{{=wedstrijd.datum.strftime("%d/%m/%Y")}}</td>
                     <td>{{=wedstrijd.omschrijving}}</td>
                     <td>{{=wedstrijd.aanvang}}</td>
                     <td>{{=wedstrijd.opmerkingen}}</td>

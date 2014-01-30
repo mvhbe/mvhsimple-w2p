@@ -1,5 +1,29 @@
+{{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
 {{extend 'layout.html'}}
 
 <h2>Wedstrijden deze maand</h2>
 
-Geen wedstrijden.
+{{if wedstrijden:}}
+    <table>
+        <th>
+            <tr>
+                <td><b>Datum</b></td>
+                <td><b>Wedstrijd</b></td>
+                <td><b>Aanvang</b></td>
+                <td><b>Opmerkingen</b></td>
+            </tr>
+        </th>
+        <tbody>
+            {{for wedstrijd in wedstrijden:}}
+                <tr>
+                    <td>{{=wedstrijd.datum.strftime("%d/%m/%Y")}}</td>
+                    <td>{{=wedstrijd.omschrijving}}</td>
+                    <td>{{=wedstrijd.aanvang}}</td>
+                    <td>{{=wedstrijd.opmerkingen}}</td>
+                </tr>
+            {{pass}}
+        </tbody>
+    </table>
+{{else:}}
+    Geen wedstrijden.
+{{pass}}

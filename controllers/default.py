@@ -29,10 +29,14 @@ import mvhutils
 
 
 def index():
-    T.force("nl")
-    response.flash = T("Welcome to web2py!")
-    return dict(message=T('Hello World'))
-
+    begin_maand, einde_maand = mvhutils.beginEindeHuidigeMaand()
+    query = ((db.wedstrijd.datum >= begin_maand)&
+             (db.wedstrijd.datum <= einde_maand))
+    wedstrijden = db(query).select(db.wedstrijd.datum,
+                                   db.wedstrijd.omschrijving,
+                                   db.wedstrijd.aanvang,
+                                   db.wedstrijd.opmerkingen)
+    return dict(wedstrijden=wedstrijden)
 
 def kalender():
     T.force("nl")
@@ -44,7 +48,6 @@ def kalender():
                                    db.wedstrijd.aanvang,
                                    db.wedstrijd.opmerkingen,
                                    orderby=db.wedstrijd.datum)
-    print "wedstrijden = ", wedstrijden
     return dict(wedstrijden=wedstrijden, huidig_jaar=jaar)
 
 

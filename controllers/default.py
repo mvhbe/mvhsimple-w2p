@@ -51,9 +51,10 @@ def kalender():
     return dict(wedstrijden=wedstrijden, huidig_jaar=jaar)
 
 
-def uitslagen():
+def uitslag():
     T.force("nl")
-    return dict(message=TODO)
+    jaar = str(mvhutils.huidigJaar())
+    return dict(wedstrijden=None, jaar=jaar)
 
 
 def user():

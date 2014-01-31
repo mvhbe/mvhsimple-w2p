@@ -1,0 +1,25 @@
+{{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
+{{extend 'layout.html'}}
+
+<h2>Uitslagen {{=jaar}}</h2>
+
+{{if wedstrijden:}}
+    <table>
+        <th>
+            <tr>
+                <td><b>Datum</b></td>
+                <td><b>Wedstrijd</b></td>
+            </tr>
+        </th>
+        <tbody>
+            {{for wedstrijd in wedstrijden:}}
+                <tr>
+                    <td>{{=wedstrijd_link(wedstrijd.datum, wedstrijd)}}</td>
+                    <td>{{=wedstrijd.omschrijving}}</td>
+                </tr>
+            {{pass}}
+        </tbody>
+    </table>
+{{else:}}
+    Geen uitslagen.
+{{pass}}

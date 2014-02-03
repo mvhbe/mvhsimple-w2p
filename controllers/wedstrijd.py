@@ -1,6 +1,20 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+# IDE stuff for web2py
+if 0:
+    import db
+    from gluon.globals import *
+    from gluon.tools import auth, crud, T, service
+    from gluon.cache import Cache
+    from gluon.html import *
+    from gluon.http import *
+    from gluon.sqlhtml import SQLFORM, SQLTABLE, form_factory
+    session = Session()
+    request = Request()
+    response = Response()
+    cache = Cache()
+
 
 @auth.requires_membership("admin")
 def detail():

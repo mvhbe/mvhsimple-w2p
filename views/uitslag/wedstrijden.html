@@ -1,0 +1,21 @@
+{{extend 'layout.html'}}
+
+<h2>Uitslagen - Wedstrijden {{=kalender.jaar}}</h2>
+
+<br>
+{{=A("Terug", _href=URL("uitslag", "overzicht"), _class="btn")}}
+
+<br><br>
+{{if wedstrijden:}}
+     <table>
+         <tbody>
+            {{for wedstrijd in wedstrijden:}}
+                <tr>
+                    <td>{{=A(wedstrijd_string(wedstrijd.datum), _href=URL("uitslag", "uitslag", args=wedstrijd.id))}}</td>
+                    <td>{{=wedstrijd.omschrijving}}</td>
+                </tr>
+            {{pass}}
+        </tbody>
+    </table>
+{{pass}}
+

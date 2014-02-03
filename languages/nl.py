@@ -363,6 +363,7 @@
 'try something like': 'probeer zoiets als',
 'Twitter': 'Twitter',
 'Uitslag': 'Uitslag',
+'Uitslagen': 'Uitslagen',
 'Unable to check for upgrades': 'Niet mogelijk om te controleren voor upgrades',
 'unable to create application "%s"': 'niet mogelijk om applicatie "%s" te maken',
 'unable to delete file "%(filename)s"': 'niet mogelijk om bestand "%(filename)s" te verwijderen',

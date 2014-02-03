@@ -1,0 +1,19 @@
+{{extend 'layout.html'}}
+
+<h2>Uitslagen - Overzicht kalenders</h2>
+
+<br>
+
+<br><br>
+{{if kalenders:}}
+    <table>
+        {{for kalender in kalenders:}}
+        <tr>
+            <td>{{=A(jaar_string(kalender.jaar),
+                     _href=URL("uitslag", "wedstrijden", args=kalender.id))}}</td>
+        </tr>
+        {{pass}}
+    </table>
+{{else:}}
+    Geen kalenders.
+{{pass}}

@@ -34,5 +34,7 @@ response.menu = [
 
 if auth.has_membership(role="admin"):
     response.menu.append((T('Kalenders'), False, URL('kalender', 'overzicht'), []))
+    response.menu.append((T('Uitslagen'), False, URL('uitslag', 'overzicht'), []))
 
-if "auth" in locals(): auth.wikimenu()
+if "auth" in locals():
+    auth.wikimenu()

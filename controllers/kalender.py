@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-@auth.requires_login()
+@auth.requires_membership("admin")
 def overzicht():
     T.force("nl")
     db.kalender.jaar.represent = jaar_link
@@ -10,14 +10,14 @@ def overzicht():
     return dict(kalenders=kalenders)
 
 
-@auth.requires_login()
+@auth.requires_membership("admin")
 def nieuw():
     T.force("nl")
     form = crud.create(db.kalender, next=URL("kalender", "overzicht"))
     return dict(form=form)
 
 
-@auth.requires_login()
+@auth.requires_membership("admin")
 def detail():
     T.force("nl")
     kalender_id = request.args(0)
@@ -27,7 +27,7 @@ def detail():
     return dict(form=form)
 
 
-@auth.requires_login()
+@auth.requires_membership("admin")
 def wedstrijden():
     T.force("nl")
     kalender_id = request.args(0)

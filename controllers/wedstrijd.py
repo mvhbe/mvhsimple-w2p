@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-@auth.requires_login()
+@auth.requires_membership("admin")
 def detail():
     T.force("nl")
     wedstrijd_id = request.args(0)
@@ -16,7 +16,7 @@ def detail():
     return dict(form=form, kalender=kalender)
 
 
-@auth.requires_login()
+@auth.requires_membership("admin")
 def nieuw():
     T.force("nl")
     kalender_id = request.args(0)

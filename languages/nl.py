@@ -146,6 +146,7 @@
 'Editing file "%s"': 'Bewerk bestand "%s"',
 'Email and SMS': 'E-mail en SMS',
 'enter a number between %(min)g and %(max)g': 'geef een getal tussen %(min)g en %(max)g',
+'enter a value': 'enter a value',
 'enter an integer between %(min)g and %(max)g': 'geef een integer tussen %(min)g en %(max)g',
 'enter date and time as %(format)s': 'enter date and time as %(format)s',
 'Error logs for "%(app)s"': 'Error logs voor "%(app)s"',

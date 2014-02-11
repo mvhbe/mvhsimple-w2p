@@ -4,7 +4,8 @@
 
 <br>
 {{=A("Terug", _href=URL("kalender", "detail", args=kalender.id), _class="btn")}}
-{{=A("Nieuwe wedstrijd", _href=URL("wedstrijd", "nieuw", args=kalender.id),_class="btn")}}
+{{=A("Nieuwe wedstrijd", _href=URL("wedstrijd", "nieuw", args=kalender.id), _class="btn")}}
+{{=A("Importeren", _href=URL("kalender", "importeren", args=kalender.id), _class="btn")}}
 
 <br><br>
 {{if wedstrijden:}}

@@ -1,0 +1,13 @@
+{{extend 'layout.html'}}
+
+<h2>Wedstrijden importeren</h2>
+<h6>Wedstrijdkalender {{=kalender.jaar}}</h6>
+
+<br>
+{{=A("Terug", _href=URL("kalender", "wedstrijden", args=kalender.id), _class="btn")}}
+
+<br><br>
+{{=form}}
+
+<br>
+{{=A("Importeren", _href=URL("kalender", "importWedstrijden", args=[kalender.id, form.vars]), _class="btn")}}

@@ -65,12 +65,23 @@ def importeren():
     T.force("nl")
     kalender_id = request.args(0)
     kalender = db.kalender(kalender_id)
-    form=FORM('Te importeren wedstrijden :',
-              INPUT(_type='file', _name="bestand"),
-              INPUT(_type="submit", _value="Importeren"))
+    form=FORM(TABLE (
+                     TR(
+                       TD(LABEL('Importeer Bestand :')),
+                       TD(INPUT(_type='file', _name='bestand', _id='bestand', requires=IS_NOT_EMPTY()))
+                       ),
+                     TR(
+                       TD(INPUT(_type='submit',_value='Importeren'))
+                       )
+                     ))
     if form.accepts(request, session):
-        print "bestandsnaam = ", form.vars.bestand.file
-        redirect(URL("kalender", "importWedstrijden", args=[kalender_id, form.vars.bestand.file]))
+        content = form.vars.bestand.file.readlines()
+        for (k, row) in enumerate(content):
+            print row
+            fields = row.split(";")
+            for field in fields:
+                print "veld = ", field.decode("utf-8")
+        redirect(URL("kalender", "importWedstrijden", args=kalender_id))
     # elif form.errors:
     #     response.flash = 'form has errors'
     # else:
@@ -82,20 +93,6 @@ def importeren():
 def importWedstrijden():
     T.force("nl")
     kalender_id = request.args(0)
-    print "args(1) = ", request.args(1)
-    bestand = request.args(1)
-    contents = request.args(1).getvalue()
-    print "contents = ", request.args(1).getvalue()
     kalender = db.kalender(kalender_id)
-    # try:
-    reader = csv.reader(bestand.getvalue(), delimiter=";")
-    for (k, row) in enumerate(reader):
-        print row
-        # if k==0:
-        #     keys=dict([(i,h.split('.')[1]) for (i,h) in enumerate(row)])
-        #     ncols=len(keys)
-        #     print 'keys=',keys
-        # else:
-        #     values=row
-        #     db[tablename].insert(**dict([(keys[i],values[i]) for i in range (ncols) and keys[i]!='id']))
+    print "Misschien is dit overbodig"
     redirect(URL("kalender", "wedstrijden", args=kalender.id))

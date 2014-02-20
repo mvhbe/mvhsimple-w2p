@@ -10,6 +10,17 @@ def wedstrijd_link(datum, row):
     return A(datum.strftime("%d/%m/%Y"),
              _href=URL('wedstrijd', 'detail',args=row.id))
 
+def importWedstrijden(kalenderId, records):
+    for (number, record) in enumerate(records):
+        if number == 0:
+            velden = record.split(";")
+            aantalVelden = len(velden)
+        else:
+            waarden = record.split(";")
+        for index in range(aantalVelden):
+            print "veld = ", field.decode("utf-8")
+
+
 db.define_table('wedstrijd',
                 Field("kalender", "reference kalender"),
                 Field('datum', 'date', unique=True, notnull=True,

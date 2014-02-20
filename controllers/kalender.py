@@ -75,17 +75,9 @@ def importeren():
                        )
                      ))
     if form.accepts(request, session):
-        content = form.vars.bestand.file.readlines()
-        for (k, row) in enumerate(content):
-            print row
-            fields = row.split(";")
-            for field in fields:
-                print "veld = ", field.decode("utf-8")
+        records = form.vars.bestand.file.readlines()
+        importWedstrijden(records)
         redirect(URL("kalender", "importWedstrijden", args=kalender_id))
-    # elif form.errors:
-    #     response.flash = 'form has errors'
-    # else:
-    #     response.flash = 'please fill the form'
     return dict(kalender=kalender, form=form)
 
 

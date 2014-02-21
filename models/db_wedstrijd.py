@@ -10,15 +10,18 @@ def wedstrijd_link(datum, row):
     return A(datum.strftime("%d/%m/%Y"),
              _href=URL('wedstrijd', 'detail',args=row.id))
 
-def importWedstrijden(kalenderId, records):
-    for (number, record) in enumerate(records):
-        if number == 0:
-            velden = record.split(";")
-            aantalVelden = len(velden)
-        else:
-            waarden = record.split(";")
-        for index in range(aantalVelden):
-            print "veld = ", field.decode("utf-8")
+def importWedstrijden(kalenderId, wedstrijden):
+    for wedstrijd in wedstrijden:
+        datum, omschrijving, aanvang, opmerkingen = wedstrijd.split(";")
+        dag, maand, jaar = datum.split("/")
+        uur = aanvang[0:2]
+        minuten = aanvang[-2:]
+        db.wedstrijd.insert(kalender=kalenderId,
+                            datum="%s-%s-%s" % (jaar, maand, dag),
+                            omschrijving=omschrijving.decode("utf-8"),
+                            aanvang="%s:%s" % (uur, minuten),
+                            opmerkingen=opmerkingen.decode("utf-8")
+                            )
 
 
 db.define_table('wedstrijd',

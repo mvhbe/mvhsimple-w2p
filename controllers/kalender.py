@@ -76,15 +76,6 @@ def importeren():
                      ))
     if form.accepts(request, session):
         records = form.vars.bestand.file.readlines()
-        importWedstrijden(records)
-        redirect(URL("kalender", "importWedstrijden", args=kalender_id))
+        importWedstrijden(kalender_id, records)
+        redirect(URL("kalender", "wedstrijden", args=kalender_id))
     return dict(kalender=kalender, form=form)
-
-
-@auth.requires_membership("admin")
-def importWedstrijden():
-    T.force("nl")
-    kalender_id = request.args(0)
-    kalender = db.kalender(kalender_id)
-    print "Misschien is dit overbodig"
-    redirect(URL("kalender", "wedstrijden", args=kalender.id))

@@ -4,7 +4,7 @@
 from customvalidators import IS_UUR
 
 def wedstrijd_string(datum):
-    return datum
+    return datum.strftime("%d/%m/%Y")
 
 def wedstrijd_link(datum, row):
     return A(datum.strftime("%d/%m/%Y"),

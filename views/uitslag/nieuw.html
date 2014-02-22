@@ -1,0 +1,10 @@
+{{extend 'layout.html'}}
+
+<h2>Nieuwe uitslaglijn</h2>
+<h6>{{=wedstrijd_string(wedstrijd.datum)}} - {{=wedstrijd.omschrijving}}</h6>
+
+<br>
+{{=A("Terug", _href=URL("uitslag", "uitslag", args=wedstrijd.id), _class="btn")}}
+
+<br><br>
+{{=form}}

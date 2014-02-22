@@ -33,3 +33,41 @@ def wedstrijden():
                                                       db.wedstrijd.omschrijving,
                                                       orderby=db.wedstrijd.datum))
     return dict(kalender=kalender, wedstrijden=wedstrijden)
+
+
+@auth.requires_membership("admin")
+def uitslag():
+    T.force("nl")
+    wedstrijd_id = request.args(0)
+    wedstrijd = db.wedstrijd(wedstrijd_id)
+    uitslagen = (
+        db(db.uitslag.wedstrijd==wedstrijd.id).select(orderby=db.uitslag.plaats))
+    return dict(wedstrijd=wedstrijd, uitslagen=uitslagen)
+
+
+# @auth.requires_membership("admin")
+# def detail():
+#     T.force("nl")
+#     wedstrijd_id = request.args(0)
+#     wedstrijd = db.wedstrijd(wedstrijd_id)
+#     kalender = db.kalender(db.kalender.id==wedstrijd.kalender)
+#     db.wedstrijd.kalender.readable = False
+#     db.wedstrijd.kalender.writable = False
+#     crud.settings.update_deletable = False
+#     form = crud.update(db.wedstrijd, wedstrijd,
+#                        next=URL("kalender", "wedstrijden", args=kalender.id))
+#     return dict(form=form, kalender=kalender)
+
+
+@auth.requires_membership("admin")
+def nieuw():
+    T.force("nl")
+    wedstrijd_id = request.args(0)
+    wedstrijd = db.wedstrijd(wedstrijd_id)
+    db.uitslag.wedstrijd.readable = False
+    db.uitslag.wedstrijd.writable = False
+    db.uitslag.wedstrijd.default = wedstrijd.id
+    valideer_plaats(wedstrijd_id)
+    form = crud.create(db.uitslag,
+                       next=URL("uitslag", "uitslag", args=wedstrijd.id))
+    return dict(form=form, wedstrijd=wedstrijd)

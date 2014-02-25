@@ -9,19 +9,46 @@
 
 <br><br>
 {{if uitslagen:}}
+     {{totaalReeks1 = 0}}
+     {{totaalReeks2 = 0}}
+     {{totaalReeks3 = 0}}
+     {{totaal = 0}}
      <table>
+         <thead>
+            <tr>
+                <td>Plaats</td>
+                <td>Deelnemer(s)</td>
+                <td>Reeks 1</td>
+                <td>Reeks 2</td>
+                <td>Reeks 3</td>
+                <td>Totaal</td>
+            </tr>
+         </thead>
          <tbody>
             {{for uitslag in uitslagen:}}
+                {{totaalReeks1 = totaalReeks1 + (0 if uitslag.gewicht1 is None else uitslag.gewicht1)}}
+                {{totaalReeks2 = totaalReeks2 + (0 if uitslag.gewicht2 is None else uitslag.gewicht2)}}
+                {{totaalReeks3 = totaalReeks3 + (0 if uitslag.gewicht3 is None else uitslag.gewicht3)}}
                 <tr>
                     <td>{{=uitslag.plaats}}</td>
                     <td>{{=uitslag.deelnemer}}</td>
-                    <td>{{=uitslag.gewicht1}}</td>
-                    <td>{{=uitslag.gewicht2}}</td>
-                    <td>{{=uitslag.gewicht3}}</td>
+                    <td>{{=0 if uitslag.gewicht1 is None else uitslag.gewicht1}}</td>
+                    <td>{{=0 if uitslag.gewicht2 is None else uitslag.gewicht2}}</td>
+                    <td>{{=0 if uitslag.gewicht3 is None else uitslag.gewicht3}}</td>
                     <td>{{=uitslag.totaal}}</td>
                 </tr>
             {{pass}}
-        </tbody>
+         </tbody>
+         <tfoot>
+            {{totaal = totaalReeks1 + totaalReeks2 + totaalReeks3}}
+            <td>Totaal</td>
+            <td></td>
+            <td>{{=totaalReeks1}}</td>
+            <td>{{=totaalReeks2}}</td>
+            <td>{{=totaalReeks3}}</td>
+            <td>{{=totaal}}</td>
+         </tfoot>
+
     </table>
 {{else:}}
         Geen uitslag.

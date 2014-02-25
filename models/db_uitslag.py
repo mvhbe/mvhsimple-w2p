@@ -23,10 +23,11 @@ db.uitslag.wedstrijd.requires = [
 db.uitslag.deelnemer.requires = [
     IS_NOT_EMPTY(error_message="Deelnemer(s) niet ingevuld !")
 ]
+
 def valideer_plaats(wedstrijd_id):
     plaatsen = db(db.uitslag.wedstrijd==wedstrijd_id)
     db.uitslag.plaats.requires = [
         IS_NOT_EMPTY(error_message="Plaats niet ingevuld !"),
-        IS_NOT_IN_DB(plaatsen, 'uistlag.plaats',
+        IS_NOT_IN_DB(plaatsen, 'uitslag.plaats',
                      error_message="Plaats bestaat reeds !")
     ]

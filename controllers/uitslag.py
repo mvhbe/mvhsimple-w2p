@@ -45,18 +45,18 @@ def uitslag():
     return dict(wedstrijd=wedstrijd, uitslagen=uitslagen)
 
 
-# @auth.requires_membership("admin")
-# def detail():
-#     T.force("nl")
-#     wedstrijd_id = request.args(0)
-#     wedstrijd = db.wedstrijd(wedstrijd_id)
-#     kalender = db.kalender(db.kalender.id==wedstrijd.kalender)
-#     db.wedstrijd.kalender.readable = False
-#     db.wedstrijd.kalender.writable = False
-#     crud.settings.update_deletable = False
-#     form = crud.update(db.wedstrijd, wedstrijd,
-#                        next=URL("kalender", "wedstrijden", args=kalender.id))
-#     return dict(form=form, kalender=kalender)
+@auth.requires_membership("admin")
+def detail():
+    T.force("nl")
+    uitslag_id = request.args(0)
+    uitslag = db.uitslag(uitslag_id)
+    db.uitslag.wedstrijd.readable = False
+    db.uitslag.wedstrijd.writable = False
+    valideer_plaats(uitslag.wedstrijd.id)
+    crud.settings.update_deletable = False
+    form = crud.update(db.uitslag, uitslag  ,
+                       next=URL("uitslag", "uitslag", args=uitslag.wedstrijd.id))
+    return dict(form=form, uitslag=uitslag)
 
 
 @auth.requires_membership("admin")
@@ -71,3 +71,24 @@ def nieuw():
     form = crud.create(db.uitslag,
                        next=URL("uitslag", "uitslag", args=wedstrijd.id))
     return dict(form=form, wedstrijd=wedstrijd)
+
+
+@auth.requires_membership("admin")
+def importeren():
+    T.force("nl")
+    wedstrijd_id = request.args(0)
+    wedstrijd = db.wedstrijd(wedstrijd_id)
+    form=FORM(TABLE (
+                     TR(
+                       TD(LABEL('Importeer Bestand :')),
+                       TD(INPUT(_type='file', _name='bestand', _id='bestand', requires=IS_NOT_EMPTY()))
+                       ),
+                     TR(
+                       TD(INPUT(_type='submit',_value='Importeren'))
+                       )
+                     ))
+    if form.accepts(request, session):
+        records = form.vars.bestand.file.readlines()
+        importUitslag(wedstrijd_id, records)
+        redirect(URL("uitslag", "uitslag", args=wedstrijd.id))
+    return dict(wedstrijd=wedstrijd, form=form)

@@ -1,6 +1,24 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+def uitslag_link(plaats, id):
+    return A(plaats, _href=URL('uitslag', 'detail',args=id))
+
+
+def importUitslag(wedstrijdId, uitslagLijnen):
+    for lijn in uitslagLijnen:
+        plaats, deelnemer, gewicht1, gewicht2, gewicht3, totaal = lijn.split(";")
+        db.uitslag.insert(wedstrijd=wedstrijdId,
+                          plaats=plaats,
+                          deelnemer=deelnemer,
+                          gewicht1=gewicht1,
+                          gewicht2=gewicht2,
+                          gewicht3=gewicht3,
+                          totaal=totaal
+                          )
+
+
+
 db.define_table('uitslag',
                 Field("wedstrijd", "reference wedstrijd"),
                 Field('plaats', 'integer'),

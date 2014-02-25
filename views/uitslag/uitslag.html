@@ -30,7 +30,7 @@
                 {{totaalReeks2 = totaalReeks2 + (0 if uitslag.gewicht2 is None else uitslag.gewicht2)}}
                 {{totaalReeks3 = totaalReeks3 + (0 if uitslag.gewicht3 is None else uitslag.gewicht3)}}
                 <tr>
-                    <td>{{=uitslag.plaats}}</td>
+                    <td>{{=uitslag_link(uitslag.plaats, uitslag.id)}}</td>
                     <td>{{=uitslag.deelnemer}}</td>
                     <td>{{=0 if uitslag.gewicht1 is None else uitslag.gewicht1}}</td>
                     <td>{{=0 if uitslag.gewicht2 is None else uitslag.gewicht2}}</td>

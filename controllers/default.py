@@ -54,7 +54,16 @@ def kalender():
 def uitslag():
     T.force("nl")
     jaar = str(mvhutils.huidigJaar())
-    return dict(wedstrijden=None, jaar=jaar)
+    kalender = db.kalender(db.kalender.jaar==jaar)
+    uitslagen = db()._select(db.uitslag.wedstrijd, distinct=True)
+    wedstrijden = db(db.wedstrijd.id.belongs(uitslagen) & db.wedstrijd.datum.jaar==jaar).select(
+        #db.wedstrijd.id,
+                                       #db.wedstrijd.datum,
+                                       #db.wedstrijd.omschrijving
+                                       #orderby=db.wedstrijd.datum
+    )
+    print "wedstrijden = ", wedstrijden
+    return dict(wedstrijden=wedstrijden, jaar=jaar)
 
 
 def user():

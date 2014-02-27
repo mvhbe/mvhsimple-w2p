@@ -30,6 +30,7 @@ response.menu = [
     (T('Home'), False, URL('default', 'index'), []),
     (T('Kalender'), False, URL('default', 'kalender'), []),
     (T('Uitslag'), False, URL('default', 'uitslag'), []),
+    (T('Reglement'), False, URL('default', 'reglement'), []),
 ]
 
 if auth.has_membership(role="admin"):

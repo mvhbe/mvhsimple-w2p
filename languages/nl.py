@@ -301,6 +301,7 @@
 'Registration key': 'Registratie sleutel',
 'Registration successful': 'Registratie succesvol',
 'Registreer': 'Registreer',
+'Reglement': 'Reglement',
 'Remember me (for 30 days)': 'Onthoudt mij (voor 30 dagen)',
 'remove compiled': 'verwijder gecompileerde',
 'Request reset password': 'Vraag een wachtwoord reset aan',

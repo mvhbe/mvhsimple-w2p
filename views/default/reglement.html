@@ -1,0 +1,11 @@
+{{extend 'layout.html'}}
+{{from gluon.contrib.markdown import WIKI as MARKDOWN}}
+
+<h2>Reglement {{=jaar}}</h2>
+
+<br>
+{{if reglement:}}
+    {{=MARKDOWN(reglement.reglement)}}
+{{else:}}
+    Geen reglement.
+{{pass}}

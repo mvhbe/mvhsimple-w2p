@@ -62,8 +62,14 @@ def uitslag():
                                        #db.wedstrijd.omschrijving
                                        #orderby=db.wedstrijd.datum
     )
-    print "wedstrijden = ", wedstrijden
     return dict(wedstrijden=wedstrijden, jaar=jaar)
+
+
+def reglement():
+    T.force("nl")
+    jaar = str(mvhutils.huidigJaar())
+    huidigReglement = db.reglement(db.reglement.jaar==jaar)
+    return dict(jaar="2014", reglement=huidigReglement)
 
 
 def user():

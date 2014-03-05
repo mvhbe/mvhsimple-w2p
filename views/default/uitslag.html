@@ -14,7 +14,8 @@
         <tbody>
             {{for wedstrijd in wedstrijden:}}
                 <tr>
-                    <td>{{=wedstrijd_link(wedstrijd.datum, wedstrijd)}}</td>
+                    <td>{{=A(wedstrijd.datum.strftime("%d/%m/%Y"),
+                          _href=URL('default', 'wedstrijduitslag',args=wedstrijd.id))}}</td>
                     <td>{{=wedstrijd.omschrijving}}</td>
                 </tr>
             {{pass}}

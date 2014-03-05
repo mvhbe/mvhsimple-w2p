@@ -55,13 +55,15 @@ def uitslag():
     T.force("nl")
     jaar = str(mvhutils.huidigJaar())
     kalender = db.kalender(db.kalender.jaar==jaar)
-    uitslagen = db()._select(db.uitslag.wedstrijd, distinct=True)
-    wedstrijden = db(db.wedstrijd.id.belongs(uitslagen) & db.wedstrijd.datum.jaar==jaar).select(
-        #db.wedstrijd.id,
-                                       #db.wedstrijd.datum,
-                                       #db.wedstrijd.omschrijving
-                                       #orderby=db.wedstrijd.datum
+    uitslagen = db(db.uitslag)._select(db.uitslag.wedstrijd, distinct=True)
+    print "uitslagen = ", uitslagen
+    wedstrijden = db((db.wedstrijd.kalender==kalender) &
+                     (db.wedstrijd.id.belongs(uitslagen))).select(db.wedstrijd.id,
+                                       db.wedstrijd.datum,
+                                       db.wedstrijd.omschrijving,
+                                       orderby=db.wedstrijd.datum
     )
+    print "wedstrijden = ", wedstrijden
     return dict(wedstrijden=wedstrijden, jaar=jaar)
 
 
@@ -70,6 +72,15 @@ def reglement():
     jaar = str(mvhutils.huidigJaar())
     huidigReglement = db.reglement(db.reglement.jaar==jaar)
     return dict(jaar="2014", reglement=huidigReglement)
+
+
+def wedstrijduitslag():
+    T.force("nl")
+    wedstrijd_id = request.args(0)
+    wedstrijd = db.wedstrijd(wedstrijd_id)
+    uitslagen = (
+        db(db.uitslag.wedstrijd==wedstrijd.id).select(orderby=db.uitslag.volgorde))
+    return dict(wedstrijd=wedstrijd, uitslagen=uitslagen)
 
 
 def user():

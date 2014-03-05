@@ -41,7 +41,7 @@ def uitslag():
     wedstrijd_id = request.args(0)
     wedstrijd = db.wedstrijd(wedstrijd_id)
     uitslagen = (
-        db(db.uitslag.wedstrijd==wedstrijd.id).select(orderby=db.uitslag.plaats))
+        db(db.uitslag.wedstrijd==wedstrijd.id).select(orderby=db.uitslag.volgorde))
     return dict(wedstrijd=wedstrijd, uitslagen=uitslagen)
 
 
@@ -52,7 +52,7 @@ def detail():
     uitslag = db.uitslag(uitslag_id)
     db.uitslag.wedstrijd.readable = False
     db.uitslag.wedstrijd.writable = False
-    valideer_plaats(uitslag.wedstrijd.id)
+    valideer_volgorde(uitslag.wedstrijd.id)
     crud.settings.update_deletable = False
     form = crud.update(db.uitslag, uitslag  ,
                        next=URL("uitslag", "uitslag", args=uitslag.wedstrijd.id))
@@ -67,7 +67,7 @@ def nieuw():
     db.uitslag.wedstrijd.readable = False
     db.uitslag.wedstrijd.writable = False
     db.uitslag.wedstrijd.default = wedstrijd.id
-    valideer_plaats(wedstrijd_id)
+    valideer_volgorde(wedstrijd_id)
     form = crud.create(db.uitslag,
                        next=URL("uitslag", "uitslag", args=wedstrijd.id))
     return dict(form=form, wedstrijd=wedstrijd)

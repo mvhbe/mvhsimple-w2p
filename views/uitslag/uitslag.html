@@ -3,7 +3,7 @@
 <h2>Uitslag {{=wedstrijd_string(wedstrijd.datum)}} - {{=wedstrijd.omschrijving}}</h2>
 
 <br>
-{{=A("Terug", _href=URL("uitslag", "wedstrijden"), _class="btn")}}
+{{=A("Terug", _href=URL("uitslag", "wedstrijden", args=wedstrijd.kalender), _class="btn")}}
 {{=A("Nieuwe lijn", _href=URL("uitslag", "nieuw", args=wedstrijd.id), _class="btn")}}
 {{=A("Importeren", _href=URL("uitslag", "importeren", args=wedstrijd.id), _class="btn")}}
 

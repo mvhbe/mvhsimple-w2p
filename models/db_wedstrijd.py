@@ -32,6 +32,8 @@ db.define_table('wedstrijd',
                       required=True),
                 Field('aanvang', 'string', length=5, notnull=True,
                       required=True, default="13:30"),
+                Field('aantalreeksen', 'integer', default="2", required=True,
+                      label="Aantal reeksen"),
                 Field('opmerkingen', 'text'),
                 auth.signature
 )
@@ -49,4 +51,7 @@ db.wedstrijd.datum.requires = [
 db.wedstrijd.aanvang.requires = [
     IS_NOT_EMPTY(error_message="Uur (UU:MM) niet ingevuld !"),
     IS_UUR()
+]
+db.wedstrijd.aantalreeksen.requires = [
+    IS_INT_IN_RANGE(1, 50, "Ongeldig aantal reeksen ingevuld !")
 ]

@@ -20,9 +20,15 @@
                 <td>Deelnemer(s)</td>
                 <td>Plaats</td>
                 <td>Reeks 1</td>
-                <td>Reeks 2</td>
-                <td>Reeks 3</td>
+                {{if wedstrijd.aantalreeksen > 1:}}
+                    <td>Reeks 2</td>
+                {{pass}}
+                {{if wedstrijd.aantalreeksen > 2:}}
+                    <td>Reeks 3</td>
+                {{pass}}
                 <td>Totaal</td>
+                <td>Locatie</td>
+                <td>Opmerking</td>
             </tr>
          </thead>
          <tbody>
@@ -35,10 +41,16 @@
                     <td>{{=uitslag.deelnemer}}</td>
                     <td>{{=uitslag.plaats}}</td>
                     <td>{{=0 if uitslag.gewicht1 is None else uitslag.gewicht1}}</td>
-                    <td>{{=0 if uitslag.gewicht2 is None else uitslag.gewicht2}}</td>
-                    <td>{{=0 if uitslag.gewicht3 is None else uitslag.gewicht3}}</td>
+                    {{if wedstrijd.aantalreeksen > 1:}}
+                        <td>{{=0 if uitslag.gewicht2 is None else uitslag.gewicht2}}</td>
+                    {{pass}}
+                    {{if wedstrijd.aantalreeksen > 2:}}
+                        <td>{{=0 if uitslag.gewicht3 is None else uitslag.gewicht3}}</td>
+                    {{pass}}
                     <td>{{=uitslag.totaal}}</td>
-                </tr>
+                    <td>{{='' if uitslag.locatie is None else uitslag.locatie}}</td>
+                    <td>{{='' if uitslag.opmerking is None else uitslag.opmerking}}</td>
+               </tr>
             {{pass}}
          </tbody>
          <tfoot>
@@ -47,12 +59,31 @@
             <td>Totaal</td>
             <td></td>
             <td>{{=totaalReeks1}}</td>
-            <td>{{=totaalReeks2}}</td>
-            <td>{{=totaalReeks3}}</td>
+            {{if wedstrijd.aantalreeksen > 1:}}
+                <td>{{=totaalReeks2}}</td>
+            {{pass}}
+            {{if wedstrijd.aantalreeksen > 2:}}
+                <td>{{=totaalReeks3}}</td>
+            {{pass}}
             <td>{{=totaal}}</td>
+            <td></td>
+            <td></td>
          </tfoot>
 
     </table>
+
+    <br>
+    <b>Legende :</b>
+        <br>ADB = Achterdijk begin
+        <br>ADE = Achterdijk einde
+        <br>BB = Binnenkant begin
+        <br>BE = Binnenkant einde
+        <br>BKB = Boskant begin (= kot)
+        <br>BKE = Boskant einde
+        <br>LK = Linkse kop
+        <br>PB = Parking begin
+        <br>PE = Parking einde
+        <br>RK = Rechtse kop
 {{else:}}
         Geen uitslag.
 {{pass}}

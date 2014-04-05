@@ -33,6 +33,10 @@ db.define_table('uitslag',
                       label="Gewicht reeks 3"),
                 Field('totaal', 'integer',
                       label="Totaal gewicht"),
+                Field('locatie', 'string', length=3,
+                      label='Locatie'),
+                Field('opmerking', 'string', length=100,
+                      label='Opmerking'),
                 auth.signature
                 )
 

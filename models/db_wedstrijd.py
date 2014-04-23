@@ -19,6 +19,7 @@ def importWedstrijden(kalenderId, wedstrijden):
         db.wedstrijd.insert(kalender=kalenderId,
                             datum="%s-%s-%s" % (jaar, maand, dag),
                             omschrijving=omschrijving.decode("utf-8"),
+                            aantalreeksen=2,
                             aanvang="%s:%s" % (uur, minuten),
                             opmerkingen=opmerkingen.decode("utf-8")
                             )

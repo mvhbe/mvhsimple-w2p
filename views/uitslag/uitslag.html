@@ -19,19 +19,15 @@
                 <td>Volgorde</td>
                 <td>Deelnemer(s)</td>
                 <td>Plaats</td>
-                <td>Locatie</td>
                 <td>Reeks 1</td>
                 {{if wedstrijd.aantalreeksen > 1:}}
-                    <td>Plaats</td>
-                    <td>Locatie</td>
                     <td>Reeks 2</td>
                 {{pass}}
                 {{if wedstrijd.aantalreeksen > 2:}}
-                    <td>Plaats</td>
-                    <td>Locatie</td>
-                     <td>Reeks 3</td>
+                    <td>Reeks 3</td>
                 {{pass}}
                 <td>Totaal</td>
+                <td>Locatie</td>
                 <td>Opmerking</td>
             </tr>
          </thead>
@@ -62,19 +58,15 @@
             <td></td>
             <td>Totaal</td>
             <td></td>
-            <td></td>
             <td>{{=totaalReeks1}}</td>
             {{if wedstrijd.aantalreeksen > 1:}}
-                <td></td>
-                <td></td>
                 <td>{{=totaalReeks2}}</td>
             {{pass}}
             {{if wedstrijd.aantalreeksen > 2:}}
-                <td></td>
-                <td></td>
                 <td>{{=totaalReeks3}}</td>
             {{pass}}
             <td>{{=totaal}}</td>
+            <td></td>
             <td></td>
          </tfoot>
 

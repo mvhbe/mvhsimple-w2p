@@ -12,20 +12,14 @@ def wedstrijd_link(datum, row):
 
 def importWedstrijden(kalenderId, wedstrijden):
     for wedstrijd in wedstrijden:
-        datum, omschrijving, aantalreeksen, aanvang, opmerkingen = wedstrijd.split(";")
-        print "datum, omschrijving, aantalreeksen, aanvang, opmerkingen"
-        print datum, omschrijving, aantalreeksen, aanvang, opmerkingen
+        datum, omschrijving, aanvang, opmerkingen = wedstrijd.split(";")
         dag, maand, jaar = datum.split("/")
-        print "dag, maand, jaar"
-        print dag, maand, jaar
         uur = aanvang[0:2]
         minuten = aanvang[-2:]
-        print "uur, minuten"
-        print uur, minuten
         db.wedstrijd.insert(kalender=kalenderId,
                             datum="%s-%s-%s" % (jaar, maand, dag),
                             omschrijving=omschrijving.decode("utf-8"),
-                            aantalreeksen=aantalreeksen,
+                            aantalreeksen=2,
                             aanvang="%s:%s" % (uur, minuten),
                             opmerkingen=opmerkingen.decode("utf-8")
                             )

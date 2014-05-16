@@ -260,7 +260,6 @@
 'October': 'Oktober',
 'Old password': 'Oude wachtwoord',
 'Omschrijving niet ingevuld !': 'Omschrijving niet ingevuld !',
-'Ongeldig aantal reeksen ingevuld !': 'Ongeldig aantal reeksen ingevuld !',
 'Online examples': 'Online voorbeelden',
 'Or': 'Of',
 'or import from csv file': 'of importeer van csv-bestand',

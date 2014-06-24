@@ -27,6 +27,7 @@
                     <td>Reeks 3</td>
                 {{pass}}
                 <td>Totaal</td>
+                <td>Opmerking</td>
             </tr>
          </thead>
          <tbody>
@@ -48,6 +49,7 @@
                         <td align="right">{{=0 if uitslag.gewicht3 is None else uitslag.gewicht3}}</td>
                     {{pass}}
                     <td>{{=uitslag.totaal}}</td>
+                    <td>{{="" if uitslag.opmerking is None else uitslag.opmerking}}</td>
                 </tr>
             {{pass}}
          </tbody>

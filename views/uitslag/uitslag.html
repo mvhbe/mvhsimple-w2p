@@ -20,8 +20,14 @@
                 <td>Deelnemer(s)</td>
                 <td>Plaats</td>
                 <td>Reeks 1</td>
-                <td>Reeks 2</td>
-                <td>Reeks 3</td>
+                {{if wedstrijd.aantalreeksen > 1:}}
+                    <td>Plaats</td>
+                    <td>Reeks 2</td>
+                {{pass}}
+                {{if wedstrijd.aantalreeksen > 2:}}
+                    <td>Plaats</td>
+                    <td>Reeks 3</td>
+                {{pass}}
                 <td>Totaal</td>
             </tr>
          </thead>
@@ -33,10 +39,16 @@
                 <tr>
                     <td>{{=uitslag_link(uitslag.volgorde, uitslag.id)}}</td>
                     <td>{{=uitslag.deelnemer}}</td>
-                    <td>{{=uitslag.plaats}}</td>
+                    <td>{{=uitslag.plaats1}}</td>
                     <td>{{=0 if uitslag.gewicht1 is None else uitslag.gewicht1}}</td>
-                    <td>{{=0 if uitslag.gewicht2 is None else uitslag.gewicht2}}</td>
-                    <td>{{=0 if uitslag.gewicht3 is None else uitslag.gewicht3}}</td>
+                    {{if wedstrijd.aantalreeksen > 1:}}
+                        <td align="right">{{=uitslag.plaats1 if uitslag.plaats2 is None else uitslag.plaats2}}</td>
+                        <td align="right">{{=0 if uitslag.gewicht2 is None else uitslag.gewicht2}}</td>
+                    {{pass}}
+                    {{if wedstrijd.aantalreeksen > 2:}}
+                        <td align="right">{{=uitslag.plaats1 if uitslag.plaats3 is None else uitslag.plaats3}}</td>
+                        <td align="right">{{=0 if uitslag.gewicht3 is None else uitslag.gewicht3}}</td>
+                    {{pass}}
                     <td>{{=uitslag.totaal}}</td>
                 </tr>
             {{pass}}
@@ -47,8 +59,14 @@
             <td>Totaal</td>
             <td></td>
             <td>{{=totaalReeks1}}</td>
-            <td>{{=totaalReeks2}}</td>
-            <td>{{=totaalReeks3}}</td>
+            {{if wedstrijd.aantalreeksen > 1:}}
+                <td></td>
+                <td>{{=totaalReeks2}}</td>
+            {{pass}}
+            {{if wedstrijd.aantalreeksen > 2:}}
+                <td></td>
+                <td>{{=totaalReeks3}}</td>
+            {{pass}}
             <td>{{=totaal}}</td>
          </tfoot>
 

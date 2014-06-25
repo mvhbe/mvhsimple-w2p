@@ -13,15 +13,19 @@ def uitslag_link(plaats, id):
 
 def importUitslag(wedstrijdId, uitslagLijnen):
     for lijn in uitslagLijnen:
-        volgorde, deelnemer, plaats, gewicht1, gewicht2, gewicht3, totaal = lijn.split(";")
+        volgorde, deelnemer, plaats1, gewicht1, plaaats2, gewicht2, plaats3, \
+            gewicht3, totaal, opmerking = lijn.split(";")
         db.uitslag.insert(wedstrijd=wedstrijdId,
                           volgorde=volgorde,
                           deelnemer=deelnemer,
-                          plaats=plaats,
+                          plaats1=plaats1,
                           gewicht1=gewicht1,
+                          plaats2=plaats2,
                           gewicht2=gewicht2,
+                          plaats3=plaats3,
                           gewicht3=gewicht3,
-                          totaal=totaal
+                          totaal=totaal,
+                          opmerking=opmerking
                           )
 
 
